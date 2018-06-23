@@ -181,7 +181,11 @@ namespace Belt.Controllers
         [HttpGet]
         [Route("participants/{part_id}")]
         public IActionResult DeleteParticipant(int part_id) {
+            var id = HttpContext.Session.GetInt32("user") ?? 0;
             var part = context.participants.Where(x => x.id == part_id).Single();
+            if (id != part.userId) {
+                return RedirectToAction("Main");
+            }
             context.Remove(part);
             context.SaveChanges();
             return RedirectToAction("Main");
@@ -190,7 +194,11 @@ namespace Belt.Controllers
         [HttpGet]
         [Route("activities/{activity_id}/delete")]
         public IActionResult DeleteActivity(int activity_id) {
+            var id = HttpContext.Session.GetInt32("user") ?? 0;
             var activity = context.activities.Where(x => x.id == activity_id).Single();
+            if (id != activity.creatorId) {
+                return RedirectToAction("Main");
+            }
             context.Remove(activity);
             context.SaveChanges();
             return RedirectToAction("Main");
