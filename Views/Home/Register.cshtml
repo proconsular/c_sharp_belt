@@ -1,0 +1,30 @@
+
+@using Belt.Models
+@model ValidatedUser
+
+<h1>Register</h1>
+<a href="/">login</a>
+
+<form asp-action="NewUser" asp-controller="Home" method="POST">
+    <span asp-validation-for="first_name"></span>
+    <label asp-for="first_name">First Name:</label>
+    <input type="text" asp-for="first_name">
+
+    <span asp-validation-for="last_name"></span>
+    <label asp-for="last_name">Last Name:</label>
+    <input type="text" asp-for="last_name">
+
+    <span asp-validation-for="email"></span>
+    <label asp-for="email">Email:</label>
+    <input type="email" asp-for="email">
+
+    <span asp-validation-for="password"></span>
+    <label asp-for="password">Password:</label>
+    <input type="password" asp-for="password">
+
+    <span asp-validation-for="confirm_password"></span>
+    <label asp-for="confirm_password">Confirm Password:</label>
+    <input type="password" asp-for="confirm_password">
+
+    <input type="submit" value="Submit">
+</form>

@@ -1,0 +1,73 @@
+
+<h1>Welcome @ViewBag.user.first_name @ViewBag.user.last_name</h1>
+<a href="/logout">logout</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>Number of Participants</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var activity in ViewBag.activities) {
+            <tr>
+                <td><a href="/activities/@activity.id">@activity.name</a></td>
+                <td>@activity.date.ToString("MMM d, yyyy") @@ @activity.time.ToString("h:mm tt")</td>
+                <td>
+                    @if (activity.duration >= 24) {
+                        var d = activity.duration / 24;
+                        @String.Format("{0:0}", d)
+                        @:days
+                    } else if (activity.duration >= 1) {
+                        @activity.duration @:hours
+                    } else {
+                        @String.Format("{0:0}", activity.duration * 60) @:minutes
+                    }
+                </td>
+                <td>@activity.creator.first_name</td>
+                <td>@activity.participants.Count</td>
+                <td>
+                    @if (activity.creatorId == ViewBag.user.id) {
+                        <a href="/activities/@activity.id/delete">Delete</a>
+                    }else{
+                        var p_out = true; 
+                        @foreach (var participant in activity.participants) {
+                            @if (participant.userId == ViewBag.user.id) {
+                                <a href="/participants/@participant.id">Flake Out</a>
+                                p_out = false;
+                                break;
+                            }
+                        }
+                        @if (p_out) {
+                            var free_to_join = true;
+                            var a_real_date = activity.date.AddHours(activity.time.Hour).AddMinutes(activity.time.Minute);
+                            var a_real_date_end = a_real_date.AddHours(activity.duration);
+                            @foreach (var b_activity in ViewBag.user_activities) {
+                                var b_real_date = b_activity.date.AddHours(b_activity.time.Hour).AddMinutes(b_activity.time.Minute);
+                                var b_real_date_end = b_real_date.AddHours(b_activity.duration);
+                                var a_contains_b_start = a_real_date <= b_real_date && a_real_date_end > b_real_date;
+                                var b_contains_a = b_real_date <= a_real_date && b_real_date_end > a_real_date;
+                                @if (a_contains_b_start || b_contains_a) {
+                                    free_to_join = false;
+                                    break;
+                                }
+                            }
+                            @if (free_to_join) {
+                                @:<a href="/activities/@activity.id/participants/new">Promise to Come</a>
+                            } else {
+                                @:Overbooked
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/activities/new">Add New Activity</a>

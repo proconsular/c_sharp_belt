@@ -1,0 +1,11 @@
+/Users/chrisluttio/Desktop/school/netCore/Belt/bin/Debug/netcoreapp2.0/Belt.deps.json
+/Users/chrisluttio/Desktop/school/netCore/Belt/bin/Debug/netcoreapp2.0/Belt.runtimeconfig.json
+/Users/chrisluttio/Desktop/school/netCore/Belt/bin/Debug/netcoreapp2.0/Belt.runtimeconfig.dev.json
+/Users/chrisluttio/Desktop/school/netCore/Belt/bin/Debug/netcoreapp2.0/Belt.dll
+/Users/chrisluttio/Desktop/school/netCore/Belt/bin/Debug/netcoreapp2.0/Belt.pdb
+/Users/chrisluttio/Desktop/school/netCore/Belt/obj/Debug/netcoreapp2.0/Belt.csprojResolveAssemblyReference.cache
+/Users/chrisluttio/Desktop/school/netCore/Belt/obj/Debug/netcoreapp2.0/Belt.csproj.CoreCompileInputs.cache
+/Users/chrisluttio/Desktop/school/netCore/Belt/obj/Debug/netcoreapp2.0/Belt.AssemblyInfoInputs.cache
+/Users/chrisluttio/Desktop/school/netCore/Belt/obj/Debug/netcoreapp2.0/Belt.AssemblyInfo.cs
+/Users/chrisluttio/Desktop/school/netCore/Belt/obj/Debug/netcoreapp2.0/Belt.dll
+/Users/chrisluttio/Desktop/school/netCore/Belt/obj/Debug/netcoreapp2.0/Belt.pdb
